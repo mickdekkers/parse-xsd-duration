@@ -1,10 +1,21 @@
 {
   "name": "parse-xsd-duration",
   "version": "0.1.0",
-  "description": "Parse XSD Durations to seconds",
+  "description": "Parse XSD durations to seconds",
   "main": "dist/index.js",
-  "author": "Mick Dekkers",
+  "author": {
+    "name": "Mick Dekkers",
+    "email": "mickdekkersnl@gmail.com"
+  },
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/soullesswaffle/parse-xsd-duration.git"
+  },
+  "bugs": {
+    "url": "https://github.com/soullesswaffle/parse-xsd-duration/issues"
+  },
+  "homepage": "https://github.com/soullesswaffle/parse-xsd-duration#readme",
   "scripts": {
     "dev": "run-p dev:babel dev:lint",
     "dev:babel": "babel src --out-dir dist --source-maps --watch",
@@ -14,6 +25,22 @@
     "test": "ava",
     "lint": "eslint src"
   },
+  "files": [
+    "dist",
+    "yarn.lock"
+  ],
+  "keywords": [
+    "xsd",
+    "duration",
+    "date",
+    "time",
+    "datetime",
+    "parser",
+    "xml",
+    "node",
+    "browser",
+    "umd"
+  ],
   "devDependencies": {
     "ava": "^0.19.1",
     "babel-cli": "^6.24.1",
