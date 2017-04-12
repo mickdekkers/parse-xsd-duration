@@ -10,3 +10,4 @@ rules:
     - warn
     - code: 130
       ignoreUrls: true
+      ignoreRegExpLiterals: true
