@@ -1,0 +1,32 @@
+{
+  "name": "parse-xsd-duration",
+  "version": "0.1.0",
+  "description": "Parse XSD Durations to millisecond values",
+  "main": "dist/index.js",
+  "author": "Mick Dekkers",
+  "license": "MIT",
+  "scripts": {
+    "dev": "run-p dev:babel dev:lint",
+    "dev:babel": "babel src --out-dir dist --source-maps --watch",
+    "dev:test": "ava --watch",
+    "dev:lint": "esw src --watch",
+    "build": "babel src --out-dir dist --source-maps",
+    "test": "ava",
+    "lint": "eslint src"
+  },
+  "devDependencies": {
+    "ava": "^0.19.1",
+    "babel-cli": "^6.24.1",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-plugin-transform-es2015-modules-umd": "^6.24.1",
+    "babel-preset-env": "^1.3.3",
+    "eslint": "^3.19.0",
+    "eslint-config-standard": "^10.2.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-node": "^4.2.2",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "eslint-watch": "^3.0.1",
+    "npm-run-all": "^4.0.2"
+  }
+}

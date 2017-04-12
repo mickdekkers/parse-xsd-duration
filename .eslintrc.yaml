@@ -1,0 +1,12 @@
+root: true
+env:
+  shared-node-browser: true
+extends: standard
+rules:
+  no-debugger: warn
+  no-unused-vars: warn
+  no-use-before-define: warn
+  max-len:
+    - warn
+    - code: 130
+      ignoreUrls: true
