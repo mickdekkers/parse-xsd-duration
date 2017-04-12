@@ -1,7 +1,7 @@
 {
   "name": "parse-xsd-duration",
   "version": "0.1.0",
-  "description": "Parse XSD Durations to millisecond values",
+  "description": "Parse XSD Durations to seconds",
   "main": "dist/index.js",
   "author": "Mick Dekkers",
   "license": "MIT",
@@ -20,6 +20,7 @@
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-plugin-transform-es2015-modules-umd": "^6.24.1",
     "babel-preset-env": "^1.3.3",
+    "big-list-of-naughty-strings": "^1.0.0",
     "eslint": "^3.19.0",
     "eslint-config-standard": "^10.2.0",
     "eslint-plugin-import": "^2.2.0",
