@@ -23,7 +23,8 @@
     "dev:lint": "esw src --watch",
     "build": "babel src --out-dir dist --source-maps",
     "test": "ava",
-    "lint": "eslint src"
+    "lint": "eslint src",
+    "fmt": "prettier --write \"**/*.{js,json,yml,yaml}\""
   },
   "files": [
     "dist",
@@ -55,6 +56,7 @@
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-standard": "^3.0.1",
     "eslint-watch": "^3.0.1",
-    "npm-run-all": "^4.0.2"
+    "npm-run-all": "^4.0.2",
+    "prettier": "^1.14.2"
   }
 }
