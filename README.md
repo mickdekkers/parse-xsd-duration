@@ -1,5 +1,5 @@
 # parse-xsd-duration [![Version](https://img.shields.io/npm/v/parse-xsd-duration.svg)][npm]
-Parse XSD durations to seconds (by default) or to obect
+Parse XSD durations to seconds (by default) or to object
 
 ## Installation
 
@@ -7,7 +7,7 @@ Parse XSD durations to seconds (by default) or to obect
 $ npm install parse-xsd-duration
 ```
 
-Note: this package has zero dependencies and is provided in [UMD format][umd] so you can easily use it in the browser.
+This package has zero dependencies and is provided in [UMD format][umd] so you can easily use it in the browser.
 
 ## Usage
 
@@ -37,7 +37,7 @@ pxd('P1Y2M3DT5H20M30.123S', true)
 
 ### `parse-xsd-duration(xsdDuration: string, toObject: boolean): number | null`
 
-- Converts an XSD duration string to seconds by default and to object with parameter toObject = true.
+- Converts an XSD duration string to seconds by default or to object with parameter `toObject` = `true`.
 - If the string is not a valid XSD duration, it will return `null`.
 - If the input is not a string, it will throw a `TypeError`.
 
@@ -45,6 +45,6 @@ pxd('P1Y2M3DT5H20M30.123S', true)
 
 MIT © [Mick Dekkers][mickdekkers-gh]
 
-[npm]: https://www.npmjs.com/package/vue-howler
+[npm]: https://www.npmjs.com/package/parse-xsd-duration
 [umd]: https://github.com/umdjs/umd
-[mickdekkers-gh]: https://github.com/soullesswaffle
+[mickdekkers-gh]: https://github.com/mickdekkers
