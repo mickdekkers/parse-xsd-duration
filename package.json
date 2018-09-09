@@ -10,12 +10,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/soullesswaffle/parse-xsd-duration.git"
+    "url": "git+https://github.com/mickdekkers/parse-xsd-duration.git"
   },
   "bugs": {
-    "url": "https://github.com/soullesswaffle/parse-xsd-duration/issues"
+    "url": "https://github.com/mickdekkers/parse-xsd-duration/issues"
   },
-  "homepage": "https://github.com/soullesswaffle/parse-xsd-duration#readme",
+  "homepage": "https://github.com/mickdekkers/parse-xsd-duration#readme",
   "scripts": {
     "dev": "run-p dev:babel dev:lint",
     "dev:babel": "babel src --out-dir dist --source-maps --watch",
