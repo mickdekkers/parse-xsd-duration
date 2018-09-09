@@ -1,6 +1,6 @@
 {
   "name": "parse-xsd-duration",
-  "version": "0.1.0",
+  "version": "0.5.0",
   "description": "Parse XSD durations to seconds",
   "main": "dist/index.js",
   "author": {
