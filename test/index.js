@@ -1,4 +1,3 @@
-import blons from 'big-list-of-naughty-strings'
 import test from 'ava'
 import pxd from '../dist/index'
 
@@ -277,9 +276,6 @@ const testDataForObjects = {
     'PT15.S'
   ]
 }
-
-// Add the Big List of Naughty Strings to the invalid data array
-testData.invalid.concat(blons)
 
 test('valid values should be parsed correctly', t => {
   testData.valid.forEach(({ input, expected }) => {
