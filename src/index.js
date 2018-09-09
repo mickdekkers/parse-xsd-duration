@@ -28,10 +28,13 @@ const emptyTime = {
 }
 
 // Regex taken from https://www.w3.org/TR/xmlschema11-2/#duration-lexical-space
-const isValidXsdDuration = (str) => /^-?P((([0-9]+Y([0-9]+M)?([0-9]+D)?|([0-9]+M)([0-9]+D)?|([0-9]+D))(T(([0-9]+H)([0-9]+M)?([0-9]+(\.[0-9]+)?S)?|([0-9]+M)([0-9]+(\.[0-9]+)?S)?|([0-9]+(\.[0-9]+)?S)))?)|(T(([0-9]+H)([0-9]+M)?([0-9]+(\.[0-9]+)?S)?|([0-9]+M)([0-9]+(\.[0-9]+)?S)?|([0-9]+(\.[0-9]+)?S))))$/.test(str)
-const isNonEmptyString = (input) => (typeof input === 'string' && input.length > 0)
-const isNegative = (str) => str[0] === '-'
-const stripFirstChar = (str) => str.slice(1)
+const isValidXsdDuration = str =>
+  /^-?P((([0-9]+Y([0-9]+M)?([0-9]+D)?|([0-9]+M)([0-9]+D)?|([0-9]+D))(T(([0-9]+H)([0-9]+M)?([0-9]+(\.[0-9]+)?S)?|([0-9]+M)([0-9]+(\.[0-9]+)?S)?|([0-9]+(\.[0-9]+)?S)))?)|(T(([0-9]+H)([0-9]+M)?([0-9]+(\.[0-9]+)?S)?|([0-9]+M)([0-9]+(\.[0-9]+)?S)?|([0-9]+(\.[0-9]+)?S))))$/.test(
+    str
+  )
+const isNonEmptyString = input => typeof input === 'string' && input.length > 0
+const isNegative = str => str[0] === '-'
+const stripFirstChar = str => str.slice(1)
 const unitToSeconds = (unit, amount) => UNITS[unit.toUpperCase()] * amount
 
 const parseUnit = (unit, amount) => {
@@ -39,22 +42,24 @@ const parseUnit = (unit, amount) => {
   return unitToSeconds(unit, amt)
 }
 
-const getNumber = (amount) => {
+const getNumber = amount => {
   const amt = parseFloat(amount)
   if (isNaN(amt)) return 0
   return amt
 }
 
-const parsePeriod = (period) => {
-  const [, year, month, day] = ((/^(?:(\d+)Y)?(?:(\d+)M)?(?:(\d+)D)?$/g).exec(period) || [])
+const parsePeriod = period => {
+  const [, year, month, day] =
+    /^(?:(\d+)Y)?(?:(\d+)M)?(?:(\d+)D)?$/g.exec(period) || []
 
-  return parseUnit('year', year) +
-    parseUnit('month', month) +
-    parseUnit('day', day)
+  return (
+    parseUnit('year', year) + parseUnit('month', month) + parseUnit('day', day)
+  )
 }
 
-const parsePeriodToObject = (period) => {
-  const [, years, months, days] = ((/^(?:(\d+)Y)?(?:(\d+)M)?(?:(\d+)D)?$/g).exec(period) || [])
+const parsePeriodToObject = period => {
+  const [, years, months, days] =
+    /^(?:(\d+)Y)?(?:(\d+)M)?(?:(\d+)D)?$/g.exec(period) || []
 
   return {
     [YEAR_UNIT]: getNumber(years),
@@ -63,16 +68,20 @@ const parsePeriodToObject = (period) => {
   }
 }
 
-const parseTime = (time) => {
-  const [, hour, minute, second] = ((/^(?:(\d+)H)?(?:(\d+)M)?(?:(\d+(?:\.\d+)?)S)?$/g).exec(time) || [])
+const parseTime = time => {
+  const [, hour, minute, second] =
+    /^(?:(\d+)H)?(?:(\d+)M)?(?:(\d+(?:\.\d+)?)S)?$/g.exec(time) || []
 
-  return parseUnit('hour', hour) +
+  return (
+    parseUnit('hour', hour) +
     parseUnit('minute', minute) +
     parseUnit('second', second)
+  )
 }
 
-const parseTimeToObject = (time) => {
-  const [, hours, minutes, seconds] = ((/^(?:(\d+)H)?(?:(\d+)M)?(?:(\d+(?:\.\d+)?)S)?$/g).exec(time) || [])
+const parseTimeToObject = time => {
+  const [, hours, minutes, seconds] =
+    /^(?:(\d+)H)?(?:(\d+)M)?(?:(\d+(?:\.\d+)?)S)?$/g.exec(time) || []
 
   return {
     [HOUR_UNIT]: getNumber(hours),
@@ -81,7 +90,7 @@ const parseTimeToObject = (time) => {
   }
 }
 
-const parse = (str) => {
+const parse = str => {
   const neg = isNegative(str)
   const duration = neg ? stripFirstChar(str) : str
   const splitDuration = duration.split('T')
@@ -94,16 +103,20 @@ const parse = (str) => {
   return neg ? -output : output
 }
 
-export const convertToObject = (str) => {
+export const convertToObject = str => {
   const neg = isNegative(str)
   const duration = neg ? stripFirstChar(str) : str
   const splitDuration = duration.split('T')
   const period = stripFirstChar(splitDuration[0])
   const time = splitDuration[1]
 
-  let output = {[IS_NEGATIVE_UNIT]: neg}
-  output = isNonEmptyString(period) ? Object.assign(output, parsePeriodToObject(period)) : Object.assign(output, emptyPeriod)
-  output = isNonEmptyString(time) ? Object.assign(output, parseTimeToObject(time)) : Object.assign(output, emptyTime)
+  let output = { [IS_NEGATIVE_UNIT]: neg }
+  output = isNonEmptyString(period)
+    ? Object.assign(output, parsePeriodToObject(period))
+    : Object.assign(output, emptyPeriod)
+  output = isNonEmptyString(time)
+    ? Object.assign(output, parseTimeToObject(time))
+    : Object.assign(output, emptyTime)
   return output
 }
 

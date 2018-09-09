@@ -284,7 +284,7 @@ test('valid values should be parsed correctly', t => {
 })
 
 test('invalid values should return null', t => {
-  testData.invalid.forEach((input) => {
+  testData.invalid.forEach(input => {
     t.true(pxd(input) === null)
   })
 })
@@ -292,14 +292,14 @@ test('invalid values should return null', t => {
 test('valid values should be parsed correctly for object', t => {
   testDataForObjects.valid.forEach(({ input, expected }) => {
     let resultObject = pxd(input, true)
-    units.forEach((unit) => {
+    units.forEach(unit => {
       t.true(resultObject[unit] === expected[unit])
     })
   })
 })
 
 test('invalid values should return null for object', t => {
-  testDataForObjects.invalid.forEach((input) => {
+  testDataForObjects.invalid.forEach(input => {
     t.true(pxd(input, true) === null)
   })
 })
