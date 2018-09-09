@@ -35,7 +35,7 @@ pxd('P1Y2M3DT5H20M30.123S', true)
 
 ## API
 
-### `parse-xsd-duration(xsdDuration: string, toObject: boolean): number | null`
+### `parse-xsd-duration(xsdDuration: string, toObject: boolean): number | object | null`
 
 - Converts an XSD duration string to seconds by default or to object with parameter `toObject` = `true`.
 - If the string is not a valid XSD duration, it will return `null`.
