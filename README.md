@@ -1,4 +1,4 @@
-# parse-xsd-duration [![Version](https://img.shields.io/npm/v/parse-xsd-duration.svg)][npm]
+# parse-xsd-duration [![Version](https://img.shields.io/npm/v/parse-xsd-duration.svg)][npm] [![Build Status](https://travis-ci.com/mickdekkers/parse-xsd-duration.svg?branch=master)](https://travis-ci.com/mickdekkers/parse-xsd-duration)
 Parse XSD durations to seconds (by default) or to object
 
 ## Installation
