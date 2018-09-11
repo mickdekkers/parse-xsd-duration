@@ -1,0 +1,1 @@
+{"version":3,"sources":["../src/helper.js"],"names":["module","exports","objectToDuration"],"mappings":";;;;;;;;;;;;;;;AACAA,SAAOC,OAAP,GAAiB,EAAEC,yCAAF,EAAjB","file":"helper.js","sourcesContent":["import { objectToDuration } from './helper/index.js'\nmodule.exports = { objectToDuration }\n"]}

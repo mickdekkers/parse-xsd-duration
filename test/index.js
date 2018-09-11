@@ -1,5 +1,6 @@
 import test from 'ava'
 import pxd from '../dist/index'
+import { objectToDuration } from '../dist/helper'
 
 /**
  * ISO 8601
@@ -277,6 +278,132 @@ const testDataForObjects = {
   ]
 }
 
+const testDataObjectParsing = {
+  valid: [
+    {
+      expected: 'P2Y6M5DT12H35M30S',
+      input: {
+        [YEARS]: 2,
+        [MONTHS]: 6,
+        [DAYS]: 5,
+        [HOURS]: 12,
+        [MINUTES]: 35,
+        [SECONDS]: 30,
+        [IS_NEGATIVE]: false
+      }
+    },
+    {
+      expected: 'P0Y0M1DT2H0M0S',
+      input: {
+        [YEARS]: 0,
+        [MONTHS]: 0,
+        [DAYS]: 1,
+        [HOURS]: 2,
+        [MINUTES]: 0,
+        [SECONDS]: 0,
+        [IS_NEGATIVE]: false
+      }
+    },
+    {
+      expected: 'P0Y20M0DT0H0M0S',
+      input: {
+        [YEARS]: 0,
+        [MONTHS]: 20,
+        [DAYS]: 0,
+        [HOURS]: 0,
+        [MINUTES]: 0,
+        [SECONDS]: 0,
+        [IS_NEGATIVE]: false
+      }
+    },
+    {
+      expected: 'P0Y0M0DT0H20M0S',
+      input: {
+        [YEARS]: 0,
+        [MONTHS]: 0,
+        [DAYS]: 0,
+        [HOURS]: 0,
+        [MINUTES]: 20,
+        [SECONDS]: 0,
+        [IS_NEGATIVE]: false
+      }
+    },
+    {
+      expected: 'P0Y20M0DT0H0M0S',
+      input: {
+        [YEARS]: 0,
+        [MONTHS]: 20,
+        [DAYS]: 0,
+        [HOURS]: 0,
+        [MINUTES]: 0,
+        [SECONDS]: 0,
+        [IS_NEGATIVE]: false
+      }
+    },
+    {
+      expected: 'P0Y0M0DT0H0M0S',
+      input: {
+        [YEARS]: 0,
+        [MONTHS]: 0,
+        [DAYS]: 0,
+        [HOURS]: 0,
+        [MINUTES]: 0,
+        [SECONDS]: 0,
+        [IS_NEGATIVE]: false
+      }
+    },
+    {
+      expected: '-P0Y0M60DT0H0M0S',
+      input: {
+        [YEARS]: 0,
+        [MONTHS]: 0,
+        [DAYS]: 60,
+        [HOURS]: 0,
+        [MINUTES]: 0,
+        [SECONDS]: 0,
+        [IS_NEGATIVE]: true
+      }
+    },
+    {
+      expected: 'P0Y0M0DT0H1M30.5S',
+      input: {
+        [YEARS]: 0,
+        [MONTHS]: 0,
+        [DAYS]: 0,
+        [HOURS]: 0,
+        [MINUTES]: 1,
+        [SECONDS]: 30.5,
+        [IS_NEGATIVE]: false
+      }
+    }
+  ],
+  invalid: [
+    {
+      [YEARS]: 0,
+      [MONTHS]: -20,
+      [DAYS]: 0,
+      [HOURS]: 0,
+      [MINUTES]: 1,
+      [SECONDS]: 30.5,
+      [IS_NEGATIVE]: false
+    },
+    {
+      [YEARS]: 15.5,
+      [MONTHS]: 0,
+      [DAYS]: 0,
+      [HOURS]: 0,
+      [MINUTES]: 0,
+      [SECONDS]: 0,
+      [IS_NEGATIVE]: false
+    },
+    {
+      [HOURS]: 30,
+      [MINUTES]: 0,
+      [SECONDS]: 0
+    }
+  ]
+}
+
 test('valid values should be parsed correctly', t => {
   testData.valid.forEach(({ input, expected }) => {
     t.true(pxd(input) === expected)
@@ -316,5 +443,34 @@ test('non-string arguments should throw TypeError', t => {
   }, TypeError)
   t.throws(() => {
     pxd(undefined)
+  }, TypeError)
+})
+
+test('valid object values should be parsed correctly', t => {
+  testDataObjectParsing.valid.forEach(({ input, expected }) => {
+    let resultObject = objectToDuration(input)
+    t.true(resultObject === expected)
+  })
+})
+
+test('invalid object values should be parsed correctly', t => {
+  testDataObjectParsing.invalid.forEach(input => {
+    let resultObject = objectToDuration(input)
+    t.true(resultObject === null)
+  })
+})
+
+test('non-object arguments should throw TypeError', t => {
+  t.throws(() => {
+    objectToDuration(42)
+  }, TypeError)
+  t.throws(() => {
+    objectToDuration(true)
+  }, TypeError)
+  t.throws(() => {
+    objectToDuration(null)
+  }, TypeError)
+  t.throws(() => {
+    objectToDuration(undefined)
   }, TypeError)
 })

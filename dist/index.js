@@ -28,20 +28,26 @@
     SECOND: 1
   };
 
-  var YEAR_UNIT = 'years';
-  var MONTH_UNIT = 'months';
-  var DAY_UNIT = 'days';
-  var HOUR_UNIT = 'hours';
-  var MINUTE_UNIT = 'minutes';
-  var SECOND_UNIT = 'seconds';
-  var IS_NEGATIVE_UNIT = 'isNegative';
+  var YEAR_UNIT = exports.YEAR_UNIT = 'years';
+  var MONTH_UNIT = exports.MONTH_UNIT = 'months';
+  var DAY_UNIT = exports.DAY_UNIT = 'days';
+  var HOUR_UNIT = exports.HOUR_UNIT = 'hours';
+  var MINUTE_UNIT = exports.MINUTE_UNIT = 'minutes';
+  var SECOND_UNIT = exports.SECOND_UNIT = 'seconds';
+  var IS_NEGATIVE_UNIT = exports.IS_NEGATIVE_UNIT = 'isNegative';
 
-  var emptyPeriod = (_emptyPeriod = {}, _emptyPeriod[YEAR_UNIT] = 0, _emptyPeriod[MONTH_UNIT] = 0, _emptyPeriod[DAY_UNIT] = 0, _emptyPeriod);
+  var periodUnits = exports.periodUnits = [YEAR_UNIT, MONTH_UNIT, DAY_UNIT];
 
-  var emptyTime = (_emptyTime = {}, _emptyTime[HOUR_UNIT] = 0, _emptyTime[MINUTE_UNIT] = 0, _emptyTime[SECOND_UNIT] = 0, _emptyTime);
+  var timeUnits = exports.timeUnits = [HOUR_UNIT, MINUTE_UNIT, SECOND_UNIT];
+
+  var allowedUnits = exports.allowedUnits = [IS_NEGATIVE_UNIT].concat(periodUnits, timeUnits);
+
+  var emptyPeriod = exports.emptyPeriod = (_emptyPeriod = {}, _emptyPeriod[YEAR_UNIT] = 0, _emptyPeriod[MONTH_UNIT] = 0, _emptyPeriod[DAY_UNIT] = 0, _emptyPeriod);
+
+  var emptyTime = exports.emptyTime = (_emptyTime = {}, _emptyTime[HOUR_UNIT] = 0, _emptyTime[MINUTE_UNIT] = 0, _emptyTime[SECOND_UNIT] = 0, _emptyTime);
 
   // Regex taken from https://www.w3.org/TR/xmlschema11-2/#duration-lexical-space
-  var isValidXsdDuration = function isValidXsdDuration(str) {
+  var isValidXsdDuration = exports.isValidXsdDuration = function isValidXsdDuration(str) {
     return (/^-?P((([0-9]+Y([0-9]+M)?([0-9]+D)?|([0-9]+M)([0-9]+D)?|([0-9]+D))(T(([0-9]+H)([0-9]+M)?([0-9]+(\.[0-9]+)?S)?|([0-9]+M)([0-9]+(\.[0-9]+)?S)?|([0-9]+(\.[0-9]+)?S)))?)|(T(([0-9]+H)([0-9]+M)?([0-9]+(\.[0-9]+)?S)?|([0-9]+M)([0-9]+(\.[0-9]+)?S)?|([0-9]+(\.[0-9]+)?S))))$/.test(str)
     );
   };
@@ -63,7 +69,7 @@
     return unitToSeconds(unit, amt);
   };
 
-  var getNumber = function getNumber(amount) {
+  var getNumber = exports.getNumber = function getNumber(amount) {
     var amt = parseFloat(amount);
     if (isNaN(amt)) return 0;
     return amt;

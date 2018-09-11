@@ -13,6 +13,7 @@ This package has zero dependencies and is provided in [UMD format][umd] so you c
 
 ```js
 import pxd from 'parse-xsd-duration'
+import { objectToDuration } from 'parse-xsd-duration/helper'
 
 pxd('PT2M10S')
 // => 130
@@ -31,6 +32,19 @@ pxd('P2Y6M5DT12H35M30S', true)
 
 pxd('P1Y2M3DT5H20M30.123S', true)
 // => { years: 1, months: 2, days: 3, hours: 5, minutes: 20, seconds: 30.123, isNegative: 0 }
+
+const durationObject = {
+  years: 1,
+  months: 2,
+  days: 3,
+  hours: 12,
+  minutes: 30,
+  seconds: 98.7,
+  isNegative: true
+}
+
+objectToDuration(durationObject)
+// => -P1Y2M3DT12H30M98.7S
 ```
 
 ## API
@@ -41,6 +55,22 @@ pxd('P1Y2M3DT5H20M30.123S', true)
 - If the string is not a valid XSD duration, it will return `null`.
 - If the input is not a string, it will throw a `TypeError`.
 
+### `objectToDuration(durationObject: DurationObject): string | null`
+
+DurationObject {
+  years: integer,
+  months: integer,
+  days: integer,
+  hours: integer,
+  minutes: integer,
+  seconds: double,
+  isNegative: boolean | integer
+}
+
+- Converts an duration object to string duration.
+- If the object is not a valid ObjectDuration(missing keys), it will return `null`.
+- If the input is not a object, it will throw a `TypeError`.
+
 ## License
 
 MIT © [Mick Dekkers][mickdekkers-gh]
@@ -48,3 +78,4 @@ MIT © [Mick Dekkers][mickdekkers-gh]
 [npm]: https://www.npmjs.com/package/parse-xsd-duration
 [umd]: https://github.com/umdjs/umd
 [mickdekkers-gh]: https://github.com/mickdekkers
+

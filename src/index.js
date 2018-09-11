@@ -7,28 +7,34 @@ const UNITS = {
   SECOND: 1
 }
 
-const YEAR_UNIT = 'years'
-const MONTH_UNIT = 'months'
-const DAY_UNIT = 'days'
-const HOUR_UNIT = 'hours'
-const MINUTE_UNIT = 'minutes'
-const SECOND_UNIT = 'seconds'
-const IS_NEGATIVE_UNIT = 'isNegative'
+export const YEAR_UNIT = 'years'
+export const MONTH_UNIT = 'months'
+export const DAY_UNIT = 'days'
+export const HOUR_UNIT = 'hours'
+export const MINUTE_UNIT = 'minutes'
+export const SECOND_UNIT = 'seconds'
+export const IS_NEGATIVE_UNIT = 'isNegative'
 
-const emptyPeriod = {
+export const periodUnits = [YEAR_UNIT, MONTH_UNIT, DAY_UNIT]
+
+export const timeUnits = [HOUR_UNIT, MINUTE_UNIT, SECOND_UNIT]
+
+export const allowedUnits = [IS_NEGATIVE_UNIT, ...periodUnits, ...timeUnits]
+
+export const emptyPeriod = {
   [YEAR_UNIT]: 0,
   [MONTH_UNIT]: 0,
   [DAY_UNIT]: 0
 }
 
-const emptyTime = {
+export const emptyTime = {
   [HOUR_UNIT]: 0,
   [MINUTE_UNIT]: 0,
   [SECOND_UNIT]: 0
 }
 
 // Regex taken from https://www.w3.org/TR/xmlschema11-2/#duration-lexical-space
-const isValidXsdDuration = str =>
+export const isValidXsdDuration = str =>
   /^-?P((([0-9]+Y([0-9]+M)?([0-9]+D)?|([0-9]+M)([0-9]+D)?|([0-9]+D))(T(([0-9]+H)([0-9]+M)?([0-9]+(\.[0-9]+)?S)?|([0-9]+M)([0-9]+(\.[0-9]+)?S)?|([0-9]+(\.[0-9]+)?S)))?)|(T(([0-9]+H)([0-9]+M)?([0-9]+(\.[0-9]+)?S)?|([0-9]+M)([0-9]+(\.[0-9]+)?S)?|([0-9]+(\.[0-9]+)?S))))$/.test(
     str
   )
@@ -42,7 +48,7 @@ const parseUnit = (unit, amount) => {
   return unitToSeconds(unit, amt)
 }
 
-const getNumber = amount => {
+export const getNumber = amount => {
   const amt = parseFloat(amount)
   if (isNaN(amt)) return 0
   return amt
