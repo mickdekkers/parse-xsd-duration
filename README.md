@@ -78,3 +78,4 @@ MIT © [Mick Dekkers][mickdekkers-gh]
 [npm]: https://www.npmjs.com/package/parse-xsd-duration
 [umd]: https://github.com/umdjs/umd
 [mickdekkers-gh]: https://github.com/mickdekkers
+
